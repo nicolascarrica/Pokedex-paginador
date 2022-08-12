@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='src/styles.css'>
+
+    <title>Pokedex</title>
+</head>
+<body>
+    <header id="imagen-pokedex">
+        <img src="imagen/pokemon1.png" class="titulo-contenedor">
+    </header>
+    
+    <div class="container">
+
+        <div id="botones">
+            <button class="btn btn-warning anterior-pagina boton-pagina">Pagina Anterior</button>
+            <p id="numero-pagina" class="btn btn-warning boton-pagina">1</p>
+            <button class="btn btn-warning siguiente-pagina boton-pagina">Pagina Siguiente</button>
+        </div>
+
+        <div class="row cuadro">
+            <div class="col" id="lista">
+            <ul class="lista-contenedor"></ul>
+            </div>
+
+            <div class="col" id="especificaciones">
+                <div id="poke-card" class="col poke-card">
+                    <strong><div id="poke-nombre">Pokedex</div></strong>
+                    <img src="imagen/pokebola.png" id="carta-inicial" class="carta-inicial">
+                    <strong><div id="poke-id"></div></strong>
+                    <strong><div id="poke-tipo"></div></strong>
+                    <strong><div id="poke-estadisticas"></div></strong>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+        
+    
+    <script type="text/javascript" src="src/pokedex.js"></script>
+</body>
+</html>
