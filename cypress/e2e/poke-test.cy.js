@@ -49,7 +49,7 @@ context('Pokedex', () => {
   it('usa el paginador', () =>{
     cy.intercept('GET','https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0', {fixture:'listado-pagina-1'})
     .as('obtenerPrimeraPagina');
-    cy.intercept('https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20', {fixture:'listado-pagina-2'})
+    cy.intercept('GET','https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20', {fixture:'listado-pagina-2'})
     .as('obtenerSegundaPagina');
     
 
