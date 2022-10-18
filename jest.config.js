@@ -1,10 +1,11 @@
 module.exports = {
     verbose: true,
-    rootDir: "src",
+    rootDir: "",
     collectCoverage: true,
     coverageDirectory: "/coverage/",
-    testPathIgnorePatterns: ["/node_modules/", ".*fixture.js"],
-    coveragePathIgnorePatterns: ["/node_modules/", ".*fixture.js"],
+    testPathIgnorePatterns: ["/node_modules/", ".*fixture.js", "/cypress/"],
+    coveragePathIgnorePatterns: ["/node_modules/", ".*fixture.js", "/cypress"],
+    testEnvironment: "jest-environment-jsdom",
   };
 
   
