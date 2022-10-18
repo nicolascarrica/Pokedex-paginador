@@ -33,7 +33,6 @@ export async function mostrarDatosPokedex(id) {
   } catch (e) {
     const pokemonData = await mostrarDatosPokedexAPI(id);
     pokemon = mapearPokemon(pokemonData)
-    console.log(pokemon.foto)
     guardarDatosPokedexLocalStorage(id, pokemon);
   }
   return pokemon;

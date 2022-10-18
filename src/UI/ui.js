@@ -6,7 +6,7 @@
 
 
 import { mostrarDatosPokedex } from '../Servicios/servicios.js';
-const pokeBolaImg = new URL ("../../imagen/pokebola.png", import.meta.url);
+
 
 const coloresParaTipos = {
     electric: '#FFEA70',
@@ -32,66 +32,47 @@ const coloresParaTipos = {
 
 /**
  * @callback pokemonSeleccionadoCallback
- * @param {string} nombre
+ * @param {String} nombre
  */
 
 /**
  * @param {Array<string>} nombresPokemones
  * @param {pokemonSeleccionadoCallback} pokemonSeleccionadoCallback
  */
-
-
-
-
-
-function crearListado(cantidad){
+export function crearListado(nombresPokemones, pokemonSeleccionadoCallback = () => {}){
 
   if (document.querySelector('ul')) {
     document.querySelector('ul').remove();
   }
+
   const $cuadroLista = document.querySelector('#lista');
   const $lista = document.createElement('ul');
   $lista.className = 'lista-contenedor'
 
-    for(let i = 1; i<=cantidad; i++){
-        const $cuadroPokemon = document.createElement('li');
-        $cuadroPokemon.className= 'lista-pokemones';
-        $cuadroPokemon.id = `lista-pokemones-${i}`
-        const $imgPokebola = document.createElement('img');
-        $imgPokebola.className = 'poke-bola-imagen';
-        $imgPokebola.src = pokeBolaImg;
-        $imgPokebola.alt = 'poke-bola';
-        $cuadroPokemon.appendChild($imgPokebola);
-        const $nombrePokemon = document.createElement('span');
-        $nombrePokemon.className = 'nombre-listado';
-        $cuadroPokemon.appendChild($nombrePokemon);
-        $cuadroPokemon.addEventListener('click', async () => {
-          document.querySelector('.seleccionado').className = 'lista-pokemones';
-          $cuadroPokemon.className = 'lista-pokemones seleccionado';
-          let pokemon = await mostrarDatosPokedex($nombrePokemon.innerText); 
-          asignarDatosPokemon(pokemon);        
-          console.log(pokemon)           
-        });            
-         $lista.appendChild($cuadroPokemon);              
-    }
+  nombresPokemones.forEach((nombre) => {
+    const $cuadroPokemon = document.createElement('li');
+    $cuadroPokemon.className= 'lista-pokemones';
+    $cuadroPokemon.id = `lista-pokemones`
+    const $imgPokebola = document.createElement('img');
+    $imgPokebola.className = 'poke-bola-imagen';
+    $imgPokebola.src = "../../imagen/pokebola.png";
+    $imgPokebola.alt = 'poke-bola';
+    $cuadroPokemon.appendChild($imgPokebola);
+    const $nombrePokemon = document.createElement('span');
+    $nombrePokemon.className = 'nombre-listado';
+    $nombrePokemon.textContent = nombre
+    $cuadroPokemon.appendChild($nombrePokemon);
+    $cuadroPokemon.addEventListener('click', () => {
+      $cuadroPokemon.className = 'lista-pokemones seleccionado';
+      pokemonSeleccionadoCallback(nombre)                       
+      });       
+
+    $lista.appendChild($cuadroPokemon);    
+
+    })
 
     $cuadroLista.appendChild($lista);
-    document.querySelector('#lista-pokemones-1').className = 'lista-pokemones seleccionado';
-    
-}
 
-
-function asignarNombresListado(listaPokemones) {
-    const containerNombresPokemon = document.querySelectorAll('.nombre-listado');
-    containerNombresPokemon.forEach((elemento, index) => {
-      elemento.textContent = listaPokemones.nombresPokemones[index];
-      
-    });
-  }
-
-export function crearListaPokemones(cantidadPokemones, listaPokemones) {
-    crearListado(cantidadPokemones);
-    asignarNombresListado(listaPokemones);
   }
 
 
@@ -148,7 +129,7 @@ function informacionTipoPokemones(tipos){
       contenedorParaTipo.style.backgroundColor = coloresParaTipos[tipo]
       tiposPokemon.appendChild(contenedorParaTipo); 
     
-    })
+    });
   
 }
   
@@ -175,7 +156,3 @@ function removeChildNodes(parent){
     parent.removeChild(parent.firstChild)
   }
 }
-
-
-
-

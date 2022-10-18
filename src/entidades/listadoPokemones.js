@@ -11,5 +11,5 @@ export default class ListadoPokemones {
       this.anteriorUrl = anteriorUrl;
       this.nombresPokemones = nombresPokemones;
     }
-  }
-  
+    
+  };

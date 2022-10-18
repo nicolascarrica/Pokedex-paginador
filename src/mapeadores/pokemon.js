@@ -50,4 +50,4 @@ import ListadoPokemones from '../entidades/listadoPokemones.js'
       anteriorUrl,
       resultados.map((pokemon) => pokemon.name),
     );
-  }
+  };
