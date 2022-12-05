@@ -3,7 +3,7 @@ import { crearPaginaPokedex } from "../Main/main.js";
 let offset = 0;
 let limit = 20;
 
-function manejarCambioPagina(texto) {
+export function manejarCambioPagina(texto) {
     let numeroPagina = averiguarPagina();
     cambiarPagina(texto, numeroPagina);
     numeroPagina = averiguarPagina();
@@ -66,7 +66,6 @@ function manejarCambioPagina(texto) {
       crearPaginaPokedex(offset, limit);
       manejarCambioPagina(e.target.innerText);
       
-    
     });
     
     $botonAnteriorPagina.addEventListener("click", (e) => {

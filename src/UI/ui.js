@@ -5,9 +5,6 @@
  */
 
 
-import { mostrarDatosPokedex } from '../Servicios/servicios.js';
-
-
 const coloresParaTipos = {
     electric: '#FFEA70',
     normal: '#B09398',
@@ -27,8 +24,7 @@ const coloresParaTipos = {
     fighting: '#2F2F2F',
     default: '#2A1A1F',
   };
-  const $cartaPokemon = document.querySelector('#poke-tipo');
-  const $estadisticas =document.querySelector('#poke-estadisticas')
+ 
 
 /**
  * @callback pokemonSeleccionadoCallback
@@ -60,7 +56,7 @@ export function crearListado(nombresPokemones, pokemonSeleccionadoCallback = () 
     $cuadroPokemon.appendChild($imgPokebola);
     const $nombrePokemon = document.createElement('span');
     $nombrePokemon.className = 'nombre-listado';
-    $nombrePokemon.textContent = nombre
+    $nombrePokemon.textContent = nombre;
     $cuadroPokemon.appendChild($nombrePokemon);
     $cuadroPokemon.addEventListener('click', () => {
       $cuadroPokemon.className = 'lista-pokemones seleccionado';
@@ -90,13 +86,12 @@ export async function asignarDatosPokemon(pokemon){
     estadisticas,
   } = pokemon;
 
-   verId(id)
    verNombre(nombre)
-   removeChildNodes($cartaPokemon)
-   removeChildNodes($estadisticas)
+   verImagen(foto)
+   verId(id)
    informacionTipoPokemones(tipos)
    informacionEstadisticasPokemones(estadisticas)
-   verImagen(foto)
+   
    
 
 }
@@ -121,8 +116,14 @@ function verId(id){
 }   
 
 function informacionTipoPokemones(tipos){
-    const tiposPokemon = document.querySelector('#poke-tipo');
+   if (document.querySelector('.lista-tipos')) {
+    document.querySelector('.lista-tipos').remove();
+  }
     
+    const tiposPokemon = document.createElement('ul');
+    tiposPokemon.className = 'lista-tipos'
+    const cuadroTipos = document.querySelector('#poke-tipo');
+
     tipos.forEach((tipo) => {
       const contenedorParaTipo = document.createElement('div');
       contenedorParaTipo.textContent = tipo;
@@ -131,28 +132,35 @@ function informacionTipoPokemones(tipos){
     
     });
   
-}
-  
-async function informacionEstadisticasPokemones(estadisticas){
-  const estadisticasPokemon = document.querySelector('#poke-estadisticas');
-  estadisticas.forEach(estadistica => {
-    const elementoEstadistica = document.createElement('div');
-    const elementoCantidadEstadistica = document.createElement('div');
-    const elementoNombreEstadistica = document.createElement('div');
-  
-    elementoNombreEstadistica.textContent = estadistica.nombre;
-    elementoCantidadEstadistica.textContent = estadistica.base;
-  
-    elementoEstadistica.appendChild(elementoNombreEstadistica);
-    elementoEstadistica.appendChild(elementoCantidadEstadistica);
-    estadisticasPokemon.appendChild(elementoEstadistica);
-  
-  })
+    cuadroTipos.appendChild(tiposPokemon)
   
 }
+  
+function informacionEstadisticasPokemones(estadisticas){
 
-function removeChildNodes(parent){
-  while(parent.firstChild){
-    parent.removeChild(parent.firstChild)
+  if (document.querySelector('.lista-estadisticas')) {
+    document.querySelector('.lista-estadisticas').remove();
   }
+
+  const estadisticasPokemon = document.createElement('ul');
+  estadisticasPokemon.className = 'lista-estadisticas'
+  const cuadroEstadisticas = document.querySelector('#poke-estadisticas');
+
+  estadisticas.forEach(estadistica => {
+    const $estadistica = document.createElement('div');
+    const $cantidadEstadistica = document.createElement('div');
+    $cantidadEstadistica.className = 'cantidad-estadistica'
+    const $nombreEstadistica = document.createElement('div');
+    $nombreEstadistica.className = 'nombre-estadistica'
+  
+    $nombreEstadistica.textContent = estadistica.nombre;
+    $cantidadEstadistica.textContent = estadistica.base;
+  
+    $estadistica.appendChild($nombreEstadistica);
+    $estadistica.appendChild($cantidadEstadistica);
+    estadisticasPokemon.appendChild($estadistica);
+  
+  });
+  
+  cuadroEstadisticas.appendChild(estadisticasPokemon);
 }

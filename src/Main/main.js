@@ -20,7 +20,7 @@ export async function crearPaginaPokedex(offset = 0, limit = 20){
   
 };
 
-export async function inicioPokedex() {
-  await crearPaginaPokedex()
+export function inicioPokedex() {
+  crearPaginaPokedex()
   activarPaginador()
 };
