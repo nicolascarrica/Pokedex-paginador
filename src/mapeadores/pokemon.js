@@ -32,6 +32,7 @@ import ListadoPokemones from '../entidades/listadoPokemones.js'
     );
   }
   
+
   /**
    * @param {Object} datosApi
    * @returns {ListadoPokemones}
@@ -51,3 +52,6 @@ import ListadoPokemones from '../entidades/listadoPokemones.js'
       resultados.map((pokemon) => pokemon.name),
     );
   };
+
+
+  
